@@ -1,0 +1,27 @@
+# Ignored project materials
+assessment/
+
+# Dependencies
+node_modules/
+**/node_modules/
+
+# Local environment
+.env
+.env.*
+!.env.sample
+
+# Build and coverage output
+build/
+dist/
+coverage/
+
+# Logs and runtime noise
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/editor files
+.DS_Store
+.idea/
+.vscode/
