@@ -45,7 +45,7 @@ npm start
 ```
 
 `typescript/npm run start:dev` starts Docker Compose services first, including
-MySQL on host port `33306` and the external service on host port `5000`.
+MySQL on host port `33306` and the external service on host port `5001`.
 
 ## Development Notes
 

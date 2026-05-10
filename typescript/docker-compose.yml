@@ -23,4 +23,4 @@ services:
       TZ: Asia/Singapore
       NODE_ENV: production
     ports:
-      - "5000:5000"
+      - "5001:5000"
