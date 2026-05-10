@@ -42,6 +42,16 @@ The development start command launches Docker Compose first. MySQL is published
 on host port `33306`; the external student service is published on host port
 `5001`.
 
+The database bootstrap folder contains sample seed data in
+`typescript/database/seed.sql`. Docker runs it when the MySQL container is first
+initialized. If the database already exists, reset it with:
+
+```bash
+cd typescript
+docker compose down -v
+docker compose up -d
+```
+
 ## Tests And Checks
 
 Run the backend test suite:
@@ -66,7 +76,8 @@ npm run lint
   - Returns `204` on success.
 - `GET /api/class/:classCode/students?offset=<offset>&limit=<limit>`
   - Returns local and external students together, sorted alphanumerically after
-    merging.
+    merging. `offset` is optional and defaults to `0`; `limit` is optional and
+    defaults to `10`.
 - `PUT /api/class/:classCode`
   - JSON body: `{ "className": "Updated Name" }`.
   - Updates the class name only and returns `204`.
