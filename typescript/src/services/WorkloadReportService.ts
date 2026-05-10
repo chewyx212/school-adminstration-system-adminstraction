@@ -18,6 +18,7 @@ type WorkloadReport = Record<string, WorkloadReportItem[]>;
 
 class WorkloadReportService {
   public async getWorkloadReport(): Promise<WorkloadReport> {
+    // Count each teacher's distinct classes per subject.
     const rows = await sequelize.query<WorkloadRow>(`
       SELECT
         t.name AS teacherName,
