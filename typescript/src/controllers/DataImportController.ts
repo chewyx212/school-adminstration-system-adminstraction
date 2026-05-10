@@ -1,20 +1,21 @@
-import Express, { RequestHandler } from 'express';
+import Express, { NextFunction, Request, RequestHandler, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import Logger from '../config/logger';
 import upload from '../config/multer';
-import { convertCsvToJson } from '../utils';
+import uploadService from '../services/UploadService';
+import { validateUploadFile } from '../validators/uploadValidator';
 
 const DataImportController = Express.Router();
-const LOG = new Logger('DataImportController.js');
 
-// TODO: Please implement Question 1 requirement here
-const dataImportHandler: RequestHandler = async (req, res) => {
-  const { file } = req;
+const dataImportHandler: RequestHandler = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    //Check Empty
+    const file = validateUploadFile(req.file);
+    await uploadService.importCsv(file.path);
 
-  const data = await convertCsvToJson(file.path);
-  LOG.info(JSON.stringify(data, null, 2));
-
-  return res.sendStatus(StatusCodes.NO_CONTENT);
+    return res.sendStatus(StatusCodes.NO_CONTENT);
+  } catch (error) {
+    return next(error);
+  }
 }
 
 DataImportController.post('/upload', upload.single('data'), dataImportHandler);

@@ -62,8 +62,7 @@ npm run lint
 ## API Endpoints
 
 - `POST /api/upload`
-  - Multipart CSV upload. Preferred field name is `file`; the server also
-    accepts the first uploaded file as a compatibility fallback.
+  - Multipart CSV upload. File field name is `data`.
   - Returns `204` on success.
 - `GET /api/class/:classCode/students?offset=<offset>&limit=<limit>`
   - Returns local and external students together, sorted alphanumerically after
