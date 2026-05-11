@@ -151,6 +151,18 @@ on host port `33306`; the external student service is published on host port
 
 ## API Endpoints
 
+Swagger UI is available after starting the backend:
+
+```text
+http://localhost:3000/api-docs
+```
+
+The raw OpenAPI JSON is available at:
+
+```text
+http://localhost:3000/api-docs.json
+```
+
 ### Upload CSV
 
 ```http

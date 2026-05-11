@@ -40,6 +40,17 @@ describe('API controllers', () => {
     jest.clearAllMocks();
   });
 
+  it('GET /api-docs.json returns the OpenAPI document', async () => {
+    await request(App)
+      .get('/api-docs.json')
+      .expect(200)
+      .expect((res) => {
+        expect(res.body.openapi).toBe('3.0.0');
+        expect(res.body.paths).toHaveProperty('/api/upload');
+        expect(res.body.paths).toHaveProperty('/api/class/{classCode}/students');
+      });
+  });
+
   it('POST /api/upload returns 204 for valid multipart upload', async () => {
     const fixturePath = path.join(__dirname, 'valid-upload.csv');
     fs.writeFileSync(fixturePath, [
